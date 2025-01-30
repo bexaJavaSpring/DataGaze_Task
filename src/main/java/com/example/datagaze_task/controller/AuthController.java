@@ -33,6 +33,7 @@ public class AuthController {
     public ResponseEntity<DataDto<UUID>> register(@RequestBody @Valid UserRegisterDto dto) {
         return ResponseEntity.ok(service.register(dto));
     }
+
     @PostMapping(value = "/logout")
     @PreAuthorize(value = "isAuthenticated()")
     @Operation(description = "Logging out from the platform")

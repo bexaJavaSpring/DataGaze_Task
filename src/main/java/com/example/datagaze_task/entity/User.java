@@ -21,10 +21,13 @@ public class User {
 
     private String name;
 
+    @Column(name = "surname")
     private String surname;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
