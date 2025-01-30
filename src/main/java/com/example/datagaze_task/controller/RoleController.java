@@ -22,7 +22,6 @@ public class RoleController {
 
     @PostMapping(value = "/create")
     @Operation(description = "API for creating role")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<DataDto<UUID>> create(@RequestBody @Valid RoleSaveRequest request) {
         return ResponseEntity.ok(service.create(request));
     }
