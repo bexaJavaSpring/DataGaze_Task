@@ -5,6 +5,7 @@ import com.example.datagaze_task.dto.DataDto;
 import com.example.datagaze_task.dto.LoginResponse;
 import com.example.datagaze_task.dto.UserRegisterDto;
 import com.example.datagaze_task.service.IAuthService;
+import com.example.datagaze_task.util.ApiConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping(ApiConstants.API_VERSION + "/auth")
 @RequiredArgsConstructor
 public class AuthController {
 

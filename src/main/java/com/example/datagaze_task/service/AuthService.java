@@ -97,7 +97,6 @@ public class AuthService implements IAuthService {
     @Override
     public DataDto<UUID> register(UserRegisterDto dto) {
         User user = new User();
-        user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         Role role = roleRepository.findByCode("USER");
         user.setRoles(Arrays.asList(role));

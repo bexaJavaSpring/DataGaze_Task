@@ -2,6 +2,7 @@ package com.example.datagaze_task.controller;
 
 import com.example.datagaze_task.dto.*;
 import com.example.datagaze_task.service.IRoleService;
+import com.example.datagaze_task.util.ApiConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping(ApiConstants.API_VERSION + "/roles")
 @Tag(name = "Role controller")
 @RequiredArgsConstructor
 public class RoleController {
