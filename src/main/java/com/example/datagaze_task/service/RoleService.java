@@ -17,9 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
-public class RoleService implements IRoleService{
+public class RoleService implements IRoleService {
     private final RoleRepository repository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

@@ -5,5 +5,5 @@ import com.example.datagaze_task.dto.DataDto;
 
 public interface IWeatherService {
 
-    DataDto<CountryDto> getWeather(String country);
+    DataDto<CountryDto> getWeather(String apiKey, String protocol,String country);
 }

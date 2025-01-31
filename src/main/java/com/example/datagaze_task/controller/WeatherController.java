@@ -16,9 +16,9 @@ public class WeatherController {
 
     private final IWeatherService service;
 
-    @GetMapping()
+    @GetMapping("/one")
     @PreAuthorize(value = "isAuthenticated()")
-    public ResponseEntity<DataDto<CountryDto>> getWeather(@RequestParam String country) {
-        return ResponseEntity.ok(service.getWeather(country));
+    public ResponseEntity<DataDto<CountryDto>> getWeather(@RequestParam String apiKey, @RequestParam String protocol, @RequestParam String country) {
+        return ResponseEntity.ok(service.getWeather(apiKey, protocol,country));
     }
 }

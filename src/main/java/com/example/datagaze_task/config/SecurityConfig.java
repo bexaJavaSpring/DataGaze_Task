@@ -33,7 +33,8 @@ public class SecurityConfig {
             "/webjars/**",
             "/webjars",
             "/api/v1/roles/create",
-            "/api/v1/auth/register"
+            "/api/v1/auth/register",
+            "/api/v1/auth/login"
     };
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -41,7 +42,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(expressionInterceptUrlRegistry -> expressionInterceptUrlRegistry
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS).authenticated()
-                        .requestMatchers("/api/v1/auth/register/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer

@@ -33,7 +33,7 @@ public class Country {
 
     private String wind_color;
 
-    private Long cloud;
+    private Integer cloud;
 
     private String cloud_color;
 }
