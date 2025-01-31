@@ -25,12 +25,12 @@ public class DailyWeather {
     @Value("${api.key}")
     private String apiKey;
 
-    @Scheduled(cron = "0 52 12 * * ?")
+    @Scheduled(cron = "0 00 09 * * ?")
     public void dailyWeather() {
         List<String> list = new ArrayList<>();
-        list.add("Uzbekistan");
-        list.add("Madrid");
-        list.add("Berlin");
+        list.add("Spain");
+        list.add("Poland");
+        list.add("Turkey");
         list.add("Germany");
         list.add("India");
         list.add("United States");
