@@ -85,7 +85,7 @@ public class AuthService implements IAuthService {
         if (user == null) {
             throw new CustomNotFoundException("user.not.found");
         }
-        Optional<SessionUser> sessionOptional = sessionUserRepository.findById(user.getId());
+        Optional<SessionUser> sessionOptional = sessionUserRepository.findByUserId(user.getId());
         if (sessionOptional.isPresent()) {
             SessionUser session = sessionOptional.get();
             session.setStatus(Status.DISABLED);

@@ -8,14 +8,11 @@ import com.example.datagaze_task.exception.GenericRuntimeException;
 import com.example.datagaze_task.mapper.WeatherColorMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +27,12 @@ public class WeatherService implements IWeatherService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         String url = String.format(protocol.toLowerCase() + apiUrl, apiKey, country);
-        ResponseEntity<CountryDto> responseEntity = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), CountryDto.class);
+        ResponseEntity<CountryDto> responseEntity = null;
+        try {
+            responseEntity = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), CountryDto.class);
+        } catch (Exception e) {
+            throw new GenericRuntimeException("weather.data.not.found");
+        }
         if (!responseEntity.getStatusCode().is2xxSuccessful())
             throw new GenericRuntimeException("weather.data.not.found");
         CountryDto response = responseEntity.getBody();

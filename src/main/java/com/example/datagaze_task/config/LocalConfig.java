@@ -20,7 +20,7 @@ public class LocalConfig {
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource rs = new ResourceBundleMessageSource();
-        rs.setBasename("message");
+        rs.setBasename("messages");
         rs.setDefaultEncoding("UTF-8");
         rs.setUseCodeAsDefaultMessage(true);
         return rs;

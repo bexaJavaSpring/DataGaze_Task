@@ -1,5 +1,6 @@
 package com.example.datagaze_task.controller;
 
+import com.example.datagaze_task.config.UserSession;
 import com.example.datagaze_task.dto.AuthLoginDto;
 import com.example.datagaze_task.dto.DataDto;
 import com.example.datagaze_task.dto.LoginResponse;

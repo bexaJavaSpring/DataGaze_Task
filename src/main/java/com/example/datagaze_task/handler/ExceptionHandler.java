@@ -86,7 +86,7 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler({RuntimeException.class, Throwable.class})
     public ResponseEntity<?> handleException(final Exception e) {
         log.error("Exception on: {}", ErrorUtil.getStacktrace(e));
-        return new ResponseEntity<>(Map.of("message", e.getMessage()), new HttpHeaders(),
+        return new ResponseEntity<>(Map.of("message", e.getLocalizedMessage()), new HttpHeaders(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
