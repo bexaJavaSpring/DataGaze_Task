@@ -3,10 +3,7 @@ package com.example.datagaze_task.service;
 import com.example.datagaze_task.config.CustomAuthenticationProvider;
 import com.example.datagaze_task.config.CustomUserDetails;
 import com.example.datagaze_task.config.UserSession;
-import com.example.datagaze_task.dto.AuthLoginDto;
-import com.example.datagaze_task.dto.DataDto;
-import com.example.datagaze_task.dto.LoginResponse;
-import com.example.datagaze_task.dto.UserRegisterDto;
+import com.example.datagaze_task.dto.*;
 import com.example.datagaze_task.entity.Role;
 import com.example.datagaze_task.entity.SessionUser;
 import com.example.datagaze_task.entity.Status;
@@ -24,6 +21,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,6 +35,7 @@ public class AuthService implements IAuthService {
     private final JwtTokenService jwtTokenService;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
 
     @Override
@@ -97,10 +96,18 @@ public class AuthService implements IAuthService {
     @Override
     public DataDto<UUID> register(UserRegisterDto dto) {
         User user = new User();
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         Role role = roleRepository.findByCode("USER");
-        user.setRoles(Arrays.asList(role));
+        if (Objects.isNull(role)) {
+            role = new Role();
+            role.setCode("USER");
+            role.setName("User");
+            Role save = roleRepository.save(role);
+            user.setRoles(Arrays.asList(save));
+        } else {
+            user.setRoles(Arrays.asList(role));
+        }
         user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setName(dto.getName());
         user.setSurname(dto.getSurname());
         User save = userRepository.save(user);
